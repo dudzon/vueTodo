@@ -29,20 +29,7 @@ export default {
 
   data() {
     return {
-      todos: [
-        {
-          title: "add Toodo1",
-          description: " Lorem ipsum bla bla"
-        },
-        {
-          title: "add Toodo2",
-          description: " Lorem ipsum bla bla"
-        },
-        {
-          title: "add Toodo3",
-          description: " Lorem ipsum bla bla"
-        }
-      ],
+      todos: [],
       validated: null,
       message: ""
     };
