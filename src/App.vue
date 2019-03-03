@@ -66,8 +66,10 @@ export default {
         })
         .catch(err => console.log(err));
 
-      // Remove all todos from UI
+      // Clear  message
+      this.message = "";
 
+      // Remove all todos from UI
       this.todos = [];
     },
     removeTodo() {
@@ -84,7 +86,11 @@ export default {
         })
         .catch(err => console.log(err));
 
-      // Remove lat todo from UI
+      // Clear  message
+
+      this.message = "";
+
+      // Remove last todo from UI
 
       this.todos.splice(this.todos.length - 1, 1);
     },
