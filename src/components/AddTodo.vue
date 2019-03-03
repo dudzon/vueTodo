@@ -28,7 +28,8 @@ export default {
       e.preventDefault();
       const newTodo = {
         title: this.title,
-        description: this.description
+        description: this.description,
+        timestamp: new Date()
       };
       this.handleValidation(newTodo);
       this.title = "";

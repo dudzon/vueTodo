@@ -22,6 +22,7 @@
 <script>
 import AddTodo from "./components/AddTodo";
 import Todos from "./components/Todos";
+import { db } from "./main.js";
 import { mdbContainer, mdbRow, mdbCol, mdbBtn } from "mdbvue";
 export default {
   name: "App",
@@ -34,15 +35,54 @@ export default {
       message: ""
     };
   },
+  created() {
+    db.collection("todos")
+      .orderBy("timestamp")
+      .get()
+      .then(res => res.forEach(doc => this.todos.push(doc.data())));
+  },
   methods: {
     addTodo(todo) {
-      //  Add todo to the list
+      // Add todo to the database
+
+      db.collection("todos")
+        .add(todo)
+        .then();
+
+      //  Add todo to UI
+
       this.todos.push(todo);
     },
     clearTodos() {
+      // Remove all todos from database
+
+      db.collection("todos")
+        .get()
+        .then(res => {
+          res.forEach(doc => {
+            doc.ref.delete();
+          });
+        });
+
+      // Remove all todos from UI
+
       this.todos = [];
     },
     removeTodo() {
+      //  Remove last todo from the database
+
+      db.collection("todos")
+        .orderBy("timestamp", "desc")
+        .limit(1)
+        .get()
+        .then(res => {
+          res.forEach(doc => {
+            doc.ref.delete();
+          });
+        });
+
+      // Remove lat todo from UI
+
       this.todos.splice(this.todos.length - 1, 1);
     },
     validate(state, message) {
