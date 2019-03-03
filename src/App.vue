@@ -47,7 +47,8 @@ export default {
 
       db.collection("todos")
         .add(todo)
-        .then();
+        .then()
+        .catch(err => console.log(err));
 
       //  Add todo to UI
 
@@ -62,7 +63,8 @@ export default {
           res.forEach(doc => {
             doc.ref.delete();
           });
-        });
+        })
+        .catch(err => console.log(err));
 
       // Remove all todos from UI
 
@@ -79,7 +81,8 @@ export default {
           res.forEach(doc => {
             doc.ref.delete();
           });
-        });
+        })
+        .catch(err => console.log(err));
 
       // Remove lat todo from UI
 
